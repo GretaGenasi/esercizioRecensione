@@ -12,7 +12,6 @@ public class MobileApp {
 		
 	//COSTRUTTORE
 	public MobileApp(String nome, String sistemaOperativo, float prezzo) {
-		super();
 		this.nome = nome;
 		this.sistemaOperativo = sistemaOperativo;
 		this.prezzo = prezzo;
@@ -22,12 +21,25 @@ public class MobileApp {
 	public String getSistemaOperativo() {
 		return sistemaOperativo;
 	}
+	
+	public void setSistemaOperativo(String sistemaOperativo) {
+		if(sistemaOperativo == null || sistemaOperativo.isEmpty()) {
+			throw new IllegalArgumentException("Il sistema operativo non può essere vuoto");
+		}
+		this.sistemaOperativo = sistemaOperativo;
+	}
 
 	public void setNome(String nome) {
+		if(nome == null || nome.isEmpty()) {
+			throw new IllegalArgumentException("Il nome non può essere vuoto");
+		}
 		this.nome = nome;
 	}
 
 	public void setPrezzo(float prezzo) {
+		if(prezzo<0) {
+			throw new IllegalArgumentException("Il prezzo non può essere negativo");
+		}
 		this.prezzo = prezzo;
 	}
 	
@@ -43,7 +55,7 @@ public class MobileApp {
 	}
 	
 	//3. Ricevi recensione
-	public void riceviRecensione(String recensione) {
+	public void riceviRecensione(Recensione recensione) {
 		if(recensione != null) {
 			elencoRecensioni.add(recensione);
 		} else
@@ -58,7 +70,7 @@ public class MobileApp {
 		
 		int sommaStelle = 0;
 		for (String recensione : elencoRecensioni) {
-			sommaStelle += recensione.getNumeroStelle();  //da capire perchè mi da errore
+			sommaStelle += recensione.getNumeroStelle();
 		}
 		return(float) sommaStelle / elencoRecensioni.size();
 	}

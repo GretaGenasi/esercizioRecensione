@@ -11,10 +11,9 @@ public class Recensione {
 	
 	//COSTRUTTORE
 	public Recensione(LocalDate data, String nomeUtente, int numeroStelle, String testo) {
-		super();
 		this.data = data;
 		this.nomeUtente = nomeUtente;
-		this.numeroStelle = numeroStelle;
+		this.setNumeroStelle (numeroStelle);
 		this.testo = testo;
 	}
 
